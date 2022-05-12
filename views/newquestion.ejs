@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1">
+		<title>Signup</title>
+        <!-- the form awesome library is used to add icons to our form -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+        <!-- include the stylesheet file -->
+        <link href="/stylesheets/login.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+    <div class = "container">
+      <% if (error && error.length > 0){%>
+        <div class = "mt-5 alert alert-danger" role="alert">
+          <%=error%>
+        </div>
+      <%}%>  
+		<div class="login">
+			<h1>New Question</h1>
+			<form action="/newquestion" method="post">
+				<input type="text" name="title" placeholder="Title" id="title" required>
+				<input type="text" name="body" placeholder="Body" id="body" required>
+				<select id = "topics" name = "topics">
+					<%if (topics && topics.length){%>
+						<%topics.forEach(function(topic){%>
+							<option value = "<%=topic.Tid%>"><%=topic.topic_name%></option>
+
+						<%})%>
+					
+							<option value="newtopic">New Topic</option>
+					
+					<%}%>
+
+				</select>
+				<input keypress="change" type="text" name ="realtopic" id = "realtopic" hidden required>
+				
+				<select id = "subtopics" name = "subtopics">
+					<%if (subtopics && subtopics.length){%>
+					<!--<input id = "hiddensubtopics" text="<%=subtopics[0].Tid%>" value="<%=subtopics[0].Tid%>,<%=subtopics[0].subtopic_name%>" hidden>-->
+					<!--<input id = "hiddensubtopics" text="<%=subtopics[0].Tid%>" value="<%=subtopics%>" hidden>-->
+						<%subtopics.forEach(function(subtopic){%>
+							<option class="subtopics" value = "<%=subtopic.Tid%>,<%=subtopic.subtopic_name%>"><%=subtopic.subtopic_name%></option>
+
+						<%})%>
+					
+							<option class = 'subtopics' value="T1,newsubtopic">New Subtopic</option>
+					
+					<%}%>
+
+				</select>
+				<input type="text" name="realsubtopic" id="realsubtopic" hidden required>
+
+				<!--<input type="text" name="topic" placeholder="Topic" id="topic" required>
+				<input type="text" name="subtopic" placeholder="Subtopic" id="subtopic">-->
+
+	
+	
+		
+				<input type="submit" value="Post Question">
+			</form>
+		</div>
+  </div>
+  <script type="text/javascript" src="/javascript/newquestion.js"></script>
+	</body>
+</html>

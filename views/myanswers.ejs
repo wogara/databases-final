@@ -1,0 +1,36 @@
+<%-include('partials/header.ejs')%>
+    <%if (results && results.length > 0){%>
+      
+        <%results.forEach(function(result){%>
+    <div class = "row top5">
+        <div class = "question col-lg-12 col-md-12 my-auto text-center border border-primary">
+            <span class = "border">
+                <h1>Question</h1>
+                <h4>Qid: <%=result.question_qid%></h4>
+                <h4>Questioner Username: <%=result.question_username%></h4>
+                <h4>Question title: <%=result.question_title%></h4>
+                <h4>Question body: <%=result.question_body%></h4>
+                <h4>Question Topic: <%=result.questions_topicname%></h4>
+                <h4>Question Subtopic: <%=result.question_subtopicname%></h4>
+                <h4>Question Date Posted: <%=result.question_dateposted%></h4>
+                <h4>Question Time Posted: <%=result.question_timeposted%></h4>
+                <h4>Question Resolved: <%=result.question_resolved%></h4>
+                <h1>Your Answer</h1>
+                <h4>Aid: <%=result.answer_aid%></h4>
+                <h4>Answerer Username: <%=result.answer_username%></h4>
+                <h4>Answer Body: <%=result.answer_body%></h4>
+                <h4>Answer Date Posted: <%=result.answer_dateposted%></h4>
+                <h4>Answer Time Posted: <%=result.answer_timeposted%></h4>
+            </span>
+        </div>
+    </div>
+    <%})%>
+
+    <%}else{%>
+        <h1>You haven't answer anything!</h1>
+    <%}%>
+
+</div>
+<script type="text/javascript" src="/javascript/filter.js"></script>
+</body>
+</html>

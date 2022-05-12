@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1">
+		<title>Login</title>
+        <!-- the form awesome library is used to add icons to our form -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+        <!-- include the stylesheet file -->
+        <link rel="stylesheet"href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> 
+        <link href="/stylesheets/login.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+    <div class = "container">
+    <% if (error && error.length > 0){ %>
+      <div class = "mt-5 alert alert-danger" role="alert">
+        <%= error %>
+      </div>
+
+    <%}%>
+         
+		<div class="login">
+			<h1>Login</h1>
+			<form action="/auth" method="post">
+				<label for="username">
+					<!-- font awesome icon -->
+					<i class="fas fa-user"></i>
+				</label>
+				<input type="text" name="username" placeholder="Username" id="username" required>
+				<label for="password">
+					<i class="fas fa-lock"></i>
+				</label>
+				<input type="password" name="password" placeholder="Password" id="password" required>
+				<input type="submit" value="Login">
+			
+			</form>
+			
+			<a href ='/signup'>Don't have an account? Sign up!</a>
+			<p> </p>
+			<a href ='/'>Home</a>
+		
+		</div>
+    </div>
+	</body>
+</html>

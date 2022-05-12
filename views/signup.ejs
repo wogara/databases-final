@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1">
+		<title>Signup</title>
+        <!-- the form awesome library is used to add icons to our form -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+        <!-- include the stylesheet file -->
+		<link rel="stylesheet"href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> 
+        <link href="/stylesheets/login.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+    <div class = "container">
+      <% if (error && error.length > 0){%>
+        <div class = "mt-5 alert alert-danger" role="alert">
+          <%=error%>
+        </div>
+      <%}%>  
+		<div class="login">
+			<h1>Signup</h1>
+			<form action="/signup" method="post">
+				<input type="text" name="username" placeholder="Username" id="username" required>
+				<input type="password" name="password" placeholder="Password" id="password" required>
+
+				<input type="text" name="firstname" placeholder="First Name" id="firstname" required>
+				<input type="text" name="lastname" placeholder="Last Name" id="lastname" required>
+
+
+				<input type="text" name="email" placeholder="Email" id="email" required>
+				<input type="text" name="city" placeholder="City" id="city" required>
+	
+        <input type="text" name="state" placeholder="State" id="state" required>
+				<input type="text" name="country" placeholder="Country" id="country" required>
+
+				<input type="text" name="status" id="status" value="novice" hidden>
+				<input size="500" type="text" name="uprofile" placeholder="Profile: Say something about yourself" id="uprofile" required>
+	
+		
+				<input type="submit" value="Signup">
+				
+				
+				
+			</form>
+			<a href="/login">Already have an account? Log in!</a>
+			<p> </p>
+			<a href="/">Home</a>
+		</div>
+  </div>
+	</body>
+</html>

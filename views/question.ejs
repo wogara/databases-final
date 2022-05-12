@@ -1,0 +1,129 @@
+<%-include('partials/header.ejs')%>
+
+    <% if (questions && questions.length > 0){ %>
+   
+
+	<!--	<div class = "container-fluid h-100 text-center">-->
+		<div class = "row top5">
+			<h1>Question</h1>
+      <% questions.forEach(function(result){%>
+        <div class = "col-lg-12 col-md-12 my-auto text-center border border-primary">
+          <span class = "border">
+			<h4>Qid: <%=result.Qid%></h4>
+			<h4>Username: <%=result.username%></h4>
+			  <h4>title: <%=result.title%></h4> 
+			  <h4>body: <%=result.body%></h4> 
+			  <h4>Topic: <%=result.topic_name%></h4> 
+			  <h4>Subtopic: <%=result.subtopic_name%></h4>
+			  <h4>Date Posted: <%=result.date_posted%></h4>
+			  <h4>Time Posted: <%=result.time_posted%></h4>
+			  <h4>Resolved: <%=result.resolved%></h4>
+
+		<%if (loggedIn){%>
+        	<a href="/giveanswer/<%=result.Qid%>">Click to Give Answer</a>
+			<%if (currUser == result.username && result.resolved != 1){%>
+				<form action="/markasresolved" method="post">
+					<button name="qid" value="<%=result.Qid%>">Mark As Resolved</button>
+				</form>
+			<%}%>
+		<%}else{%>
+			<a href="/login">Login to Answer!</a>
+          
+		<%}%>
+	</span>
+        </div>
+
+        
+
+     <%})}%>
+    </div>
+
+    <% if (answers && answers.length > 0){ %>
+   
+
+	<!--	<div class = "container-fluid h-100 text-center">-->
+		
+		<div class = "row top5">
+			<h1>Answers</h1>
+      <% answers.forEach(function(result){%>
+        <div class = "col-lg-12 col-md-12 my-auto text-center border border-primary">
+          <span class = "border">
+          <h4>Qid: <%=result.Qid%></h4>
+		  <h4>Aid: <%=result.Aid%></h4>
+		  <h4>username: <%=result.username%></h4>
+		 	<h4>body: <%=result.body%></h4>
+			<h4>num_likes: <%=result.num_likes%></h4>  
+		  <h4>Date Posted: <%=result.date_posted%></h4>
+		  <h4>Time Posted: <%=result.time_posted%></h4>
+         <!-- <button href="/<%=result.Qid%>" type="button" class = "btn btn-primary">Click to See</button>-->
+
+			<%if (loggedIn){%>
+				<form action="/addlike" method ="post">
+
+					<input type="text" name="aid" id="aid" value="<%=result.Aid%>" hidden>
+					<button type="submit" value="Login">like</button>
+				</form>
+			<%}%>
+          </span>
+        </div>
+        
+
+     <%})}else{%>
+          <h1>no answers!! </h1>
+		  <%if (loggedIn){%>
+		  <h1>give an answer!</h1>
+		  <%}%>
+      <%}%>
+
+ 
+
+    
+
+    
+
+<!--			<div class = "col-lg-4 col-md-6 my-auto text-center">
+				<img class = "img-fluid" src = "https://images.squarespace-cdn.com/content/v1/5c4b1ccf96e76f4f95321a71/1553290879487-H9092SVJGH79JVI01QET/ke17ZwdGBToddI8pDm48kDHPSfPanjkWqhH6pl6g5ph7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0mwONMR1ELp49Lyc52iWr5dNb1QJw9casjKdtTg1_-y4jz4ptJBmI9gQmbjSQnNGng/IMG_2280.jpg?format=750w">
+				<span class = "image-caption">Westerly Renovation</span>
+			</div>
+
+			<div class = "col-lg-4 col-md-6 my-auto text-center">
+				<img class = "img-fluid" src = "https://images.squarespace-cdn.com/content/v1/5c4b1ccf96e76f4f95321a71/1553290879487-H9092SVJGH79JVI01QET/ke17ZwdGBToddI8pDm48kDHPSfPanjkWqhH6pl6g5ph7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0mwONMR1ELp49Lyc52iWr5dNb1QJw9casjKdtTg1_-y4jz4ptJBmI9gQmbjSQnNGng/IMG_2280.jpg?format=750w">
+				<span class = "image-caption">Westerly Renovation</span>
+	
+			</div>		
+			
+			<div class = "col-lg-4 col-md-6 my-auto text-center">
+				<img class = "img-fluid" src = "https://images.squarespace-cdn.com/content/v1/5c4b1ccf96e76f4f95321a71/1553290879487-H9092SVJGH79JVI01QET/ke17ZwdGBToddI8pDm48kDHPSfPanjkWqhH6pl6g5ph7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0mwONMR1ELp49Lyc52iWr5dNb1QJw9casjKdtTg1_-y4jz4ptJBmI9gQmbjSQnNGng/IMG_2280.jpg?format=750w">
+				<span class = "image-caption">Westerly Renovation</span>
+	
+			</div>
+
+		
+
+			<div class = "col-lg-4 col-md-6 my-auto text-center">
+				<img class = "img-fluid" src = "https://images.squarespace-cdn.com/content/v1/5c4b1ccf96e76f4f95321a71/1553290879487-H9092SVJGH79JVI01QET/ke17ZwdGBToddI8pDm48kDHPSfPanjkWqhH6pl6g5ph7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0mwONMR1ELp49Lyc52iWr5dNb1QJw9casjKdtTg1_-y4jz4ptJBmI9gQmbjSQnNGng/IMG_2280.jpg?format=750w">	
+				<span class = "image-caption">Westerly Renovation</span>
+	
+			</div>
+
+			<div class = "col-lg-4 col-md-6 my-auto text-center">
+				<img class = "img-fluid" src = "https://images.squarespace-cdn.com/content/v1/5c4b1ccf96e76f4f95321a71/1553290879487-H9092SVJGH79JVI01QET/ke17ZwdGBToddI8pDm48kDHPSfPanjkWqhH6pl6g5ph7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0mwONMR1ELp49Lyc52iWr5dNb1QJw9casjKdtTg1_-y4jz4ptJBmI9gQmbjSQnNGng/IMG_2280.jpg?format=750w">
+				<span class = "image-caption">Westerly Renovation</span>
+	
+			</div>		
+			
+			<div class = "col-lg-4 col-md-6 my-auto text-center">
+				<img class = "img-fluid" src = "https://images.squarespace-cdn.com/content/v1/5c4b1ccf96e76f4f95321a71/1553290879487-H9092SVJGH79JVI01QET/ke17ZwdGBToddI8pDm48kDHPSfPanjkWqhH6pl6g5ph7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0mwONMR1ELp49Lyc52iWr5dNb1QJw9casjKdtTg1_-y4jz4ptJBmI9gQmbjSQnNGng/IMG_2280.jpg?format=750w">
+				<span class = "image-caption">Weerly Renovation</span>
+	
+
+			</div> -->
+
+		</div>
+
+		<!--	</div>-->
+
+
+</div>
+</body>
+</html>

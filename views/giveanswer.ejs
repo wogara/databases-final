@@ -1,0 +1,48 @@
+<%-include('partials/header.ejs')%>
+
+    <% if (questions && questions.length > 0){ %>
+   
+
+	<!--	<div class = "container-fluid h-100 text-center">-->
+		<div class = "row top5">
+      <% questions.forEach(function(result){%>
+        <div class = "col-lg-12 col-md-12 my-auto text-center border border-primary">
+          <span class = "border">
+          <h4>Qid: <%=result.Qid%>, Username: <%=result.username%>, title: <%=result.title%>, body: <%=result.body%></h4>  
+         <!-- <button href="/<%=result.Qid%>" type="button" class = "btn btn-primary">Click to See</button>-->
+
+		<%if (loggedIn){%>
+        	<a href="/giveanswer/<%=result.Qid%>">Click to Give Answer</a>
+		<%}else{%>
+			<a href="/login">Login to Answer!</a>
+          
+		<%}%>
+    </span>
+        </div>
+
+        
+
+     <%})}%>
+    </div>
+
+
+    <div class="mt-5"></div>
+    <form action="/giveanswer" method="post">
+        <div class="form-group">
+            <label for="answer">Answer:</label>
+            <textarea name = "answer" class="form-control" id="answer"></textarea>
+        </div>
+            <input type="text" name = "Qid" value = "<%=questions[0].Qid%>" hidden>
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+     
+        
+    
+    </form>
+</div>
+
+</div>
+
+
+</body>
+</html>
